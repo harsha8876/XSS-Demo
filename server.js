@@ -22,7 +22,7 @@ db.exec(`
 
 console.log("Comments database ready.");
 
-// Encode values for display in HTML text contexts.
+
 function escapeHtml(value) {
   const replacements = {
     "&": "&amp;",
@@ -78,7 +78,7 @@ app.get("/reflected", (req, res) => {
   const query = typeof req.query.q === "string" ? req.query.q : "";
   const protectedMode = req.query.mode === "protected";
 
-  // Protection: encode before inserting into HTML text.
+
   const output = protectedMode ? escapeHtml(query) : query;
 
   res.send(`
@@ -143,7 +143,7 @@ app.get("/stored", (req, res) => {
   ).all();
 
   const commentItems = comments.map((comment) => {
-    // The stored value stays unchanged; encode when displaying it.
+
     const output = protectedMode
       ? escapeHtml(comment.body)
       : comment.body;
@@ -207,7 +207,7 @@ app.get("/stored", (req, res) => {
   `);
 });
 
-// STORED XSS: SAVE A COMMENT
+
 app.post("/stored", (req, res) => {
   const body = typeof req.body?.body === "string"
     ? req.body.body.trim()
@@ -219,7 +219,7 @@ app.post("/stored", (req, res) => {
     );
   }
 
-  // A placeholder keeps comment data separate from SQL instructions.
+
   db.prepare(
     "INSERT INTO comments (body) VALUES (?)"
   ).run(body);
@@ -304,7 +304,7 @@ app.get("/dom", (req, res) => {
   `);
 });
 
-// Accept connections only from this laptop.
+
 app.listen(8000, "127.0.0.1", () => {
   console.log("Open http://127.0.0.1:8000");
   console.log("Press Control+C to stop.");

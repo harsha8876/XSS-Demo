@@ -140,10 +140,3 @@ In this application, the reflected and stored vulnerabilities come from server-g
 
 Content Security Policy (CSP) can provide an additional layer of protection, including restrictions on inline script execution. It complements safe rendering and is not configured in this version of the project.
 
-## Educational scope
-
-This application deliberately includes vulnerable modes for comparison. All demonstrations stay within the local application and use harmless visible effects. They do not access cookies, steal data, make external requests, or perform destructive actions.
-
-The application is intended for one laptop and a ten-minute college presentation with four presenters: one minute for the introduction and three minutes for each XSS variant.
-
-The main learning outcome is understanding where input becomes executable content and how the correct output handling prevents that transition.
